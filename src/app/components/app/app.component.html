@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+<mat-drawer-container fullscreen>
+    <mat-drawer #drawer mode="side" opened>
+        <mat-list>
+            <mat-list-item>
+                <button mat-raised-button>
+                    Buton
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>
