@@ -8,7 +8,11 @@ import { LoginComponent } from './components/login/login.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { DessertsComponent } from './components/desserts/desserts.component';
 import { HomeComponent } from './components/home/home.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { ForgotComponent } from './components/forgot/forgot.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import {MatButtonModule} from '@angular/material/button';
     LoginComponent,
     UploadComponent,
     DessertsComponent,
-    HomeComponent
+    HomeComponent,
+    ForgotComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
