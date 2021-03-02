@@ -1,18 +1,12 @@
-body {
-    background-repeat: no-repeat;
-    background: linear-gradient(60deg, #8db2c8 20%, #d6943d 100%);
-    background-clip: content-box, padding-box;
-    user-select: none;
-}
-
 .content {
-    padding: 10px 10px 10px 10px;
+    padding: 20px 20px 20px 20px;
 }
 
 mat-card {
     padding: 0 0 0 0;
     height: 100%;
     width: 100%;
+    opacity: 0.9;
 }
 
 .login-card {
@@ -37,6 +31,7 @@ mat-card {
     border-radius: 50%;
     border: solid 1px rgb(165, 165, 165) ;
     box-shadow: 5px 10px 5px 5px #888787;
+    user-select: none;
 }
 
 .login-form {
