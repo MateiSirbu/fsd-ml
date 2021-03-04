@@ -1,26 +1,37 @@
 .content {
-    padding: 10px 10px 10px 10px;
+    padding: 20px 20px 20px 20px;
 }
 
-#container {
+#preview-container {
     width: 800px;
     height: 600px;
     margin: 0 auto;
-    border: 2px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    background-color: #E9E7E7;
+    border-radius: 15px 15px 15px 15px;
+    padding: 20px 20px 20px 20px;
+    background-color: #e9e7e766
 }
 
-#containerImage {
+#image-container {
     width: 700px;
-    height: 400px;
-    margin-top: 20%;
+    height: 470px;
     margin: 0 auto;
     border: 2px solid #ccc;
+    border-radius: 15px 15px 15px 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #D7D7D7;
+}
+
+#submit-container {
+    margin-top: 20px;
+    float: left;
+}
+
+#upload-control {
+    width: 100%;
+}
+
+mat-form-field {
+    float: right;
 }

@@ -1,7 +1,14 @@
 .container {
     background-repeat: no-repeat;
-    background: linear-gradient(60deg, #8db2c8 20%, #d6943d 100%);
+    background: linear-gradient(60deg, #2D5880 0%, #6DA3B9 33%, #B1C5A4 66%, #e48947 100%);
     background-clip: content-box, padding-box;
     width: 100%;
     height: 100%;
+}
+
+mat-drawer {
+    border-width: 1px;
+    border-color: hsl(207, 25%, 64%);
+    background-color: #80a0bf;
+    box-shadow: 3px 10px 30px 3px rgb(119, 131, 142)
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileInput, FileInputComponent } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-upload',
@@ -6,25 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  public imagePath:any;
-  imgURL: any;
-  public message: string = '';
- 
-  preview(files: any) {
-    if (files.length === 0)
+  public imgURL: any;
+
+  preview(fileInputComponent: FileInputComponent) {
+    if (fileInputComponent.empty)
       return;
- 
-    var mimeType = files[0].type;
+
+    let file = fileInputComponent.value.files[0]
+    let mimeType = file.type;
+
     if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
+      alert("Only images are supported.");
       return;
     }
- 
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
     }
   }
 
