@@ -1,4 +1,10 @@
 {
+   "type": "postgres", 
+   "host": "localhost", 
+   "port": 5432, 
+   "username": "postgres", 
+   "password": "pasword", 
+   "database": "ml-db", 
    "synchronize": true,
    "logging": false,
    "entities": [
