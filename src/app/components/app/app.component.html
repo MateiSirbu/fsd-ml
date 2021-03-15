@@ -1,6 +1,6 @@
 <mat-drawer-container fullscreen>
     <mat-drawer #drawer mode="side" opened>
-        <mat-list>
+        <mat-list *ngIf="this.headerService.showHeader">
             <mat-list-item>
                 <a mat-mini-fab color="primary" matTooltip="Home" matTooltipPosition="right" href='/' aria-label="Example icon button with a menu icon">
                     <mat-icon>home</mat-icon>

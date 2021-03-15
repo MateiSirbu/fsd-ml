@@ -26,6 +26,9 @@ import { DessertListMockService } from './components/desserts/desserts-items.moc
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { UserService } from './service/user.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -57,9 +60,10 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatFormFieldModule,
     MatIconModule,
     MatTooltipModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    HttpClientModule
   ],
-  providers: [DessertListMockService],
+  providers: [DessertListMockService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
