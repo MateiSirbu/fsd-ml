@@ -20,7 +20,7 @@ export class UserController {
     })
 
     validateCredentials(user: User, password: string) {
-        return user.hash 
+        return user.hash
             == crypto.PBKDF2(password, user.salt, { keySize: env.PBKDF2_KEY_SIZE, iterations: env.PBKDF2_ITERATIONS }).toString(crypto.enc.Hex);
     }
 
@@ -57,33 +57,31 @@ export class UserController {
     }
 
     async login(request: Request, response: Response, next: NextFunction) {
-
-            let user = await this.userRepository.findOne(request.params.email);
-            if (user === null) {
-                response.statusMessage = "User not found."
-                response.statusCode = 404
-                return response
-            }
-            if (user instanceof User) {
-                const privateKey = fs.readFileSync(env.JWT_PRIVATE_KEY)
-                if (this.validateCredentials(user, request.body.password)) {
-                    let signOptions: jsonwebtoken.SignOptions = {
-                        algorithm: 'RS256',
-                        expiresIn: 86400,
-                        subject: String(user.id),
-                    }
-                    const token = jsonwebtoken.sign({}, {key: privateKey, passphrase: 'devteam'}, signOptions,)
-                    response.statusMessage = "Valid credentials. Sending token to frontend."
-                    response.statusCode = 200
-                    return response.json({ idToken: token, expiresIn: 86400 })
-                } else {
-                    response.statusMessage = "Incorrect credentials."
-                    return response.sendStatus(401)
+        let user = await this.userRepository.findOne({email: request.body.email});
+        if (user === null) {
+            response.statusMessage = "User not found."
+            response.statusCode = 404
+            return response
+        }
+        if (user instanceof User) {
+            const privateKey = fs.readFileSync(env.JWT_PRIVATE_KEY)
+            if (this.validateCredentials(user, request.body.password)) {
+                let signOptions: jsonwebtoken.SignOptions = {
+                    algorithm: 'RS256',
+                    expiresIn: 86400,
+                    subject: String(user.id),
                 }
+                const token = jsonwebtoken.sign({}, { key: privateKey, passphrase: 'devteam' }, signOptions,)
+                response.statusMessage = "Valid credentials. Sending token to frontend."
+                response.statusCode = 200
+                return response.json({ idToken: token, expiresIn: 86400 })
             } else {
+                response.statusMessage = "Incorrect credentials."
                 return response.sendStatus(401)
             }
-        
+        } else {
+            return response.sendStatus(401)
+        }
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {

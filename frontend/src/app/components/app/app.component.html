@@ -1,14 +1,14 @@
 <mat-drawer-container fullscreen>
     <mat-drawer #drawer mode="side" opened>
-        <mat-list *ngIf="this.headerService.showHeader">
+        <mat-list *ngIf="this.headerService.willShowHeader()">
             <mat-list-item>
                 <a mat-mini-fab color="primary" matTooltip="Home" matTooltipPosition="right" href='/' aria-label="Example icon button with a menu icon">
                     <mat-icon>home</mat-icon>
                 </a>
             </mat-list-item>
             <mat-list-item>
-                <a mat-mini-fab color="primary" matTooltip="Login" matTooltipPosition="right" href='/login' aria-label="Example icon button with a menu icon">
-                    <mat-icon>login</mat-icon>
+                <a mat-mini-fab color="primary" matTooltip="Log out" matTooltipPosition="right" (click)="logOut()" aria-label="Example icon button with a menu icon">
+                    <mat-icon>logout</mat-icon>
                 </a>
             </mat-list-item>
             <mat-list-item>

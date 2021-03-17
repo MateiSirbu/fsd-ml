@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import { DessertItem } from './deserts-items.interface';
 import { DessertListMockService } from './desserts-items.mock.service';
 
@@ -22,7 +24,11 @@ export class DessertsComponent implements OnInit {
     'Iron'
   ];
 
-  constructor(private service: DessertListMockService) {
+  constructor(private service: DessertListMockService,
+    private userService: UserService,
+    private router: Router) {
+    if (!this.userService.isLoggedIn())
+      this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {

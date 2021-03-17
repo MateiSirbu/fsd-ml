@@ -26,8 +26,10 @@ import { DessertListMockService } from './components/desserts/desserts-items.moc
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { UserService } from './service/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './services/interceptor.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 
 @NgModule({
@@ -61,9 +63,14 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTooltipModule,
     MaterialFileInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [DessertListMockService, UserService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: Interceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

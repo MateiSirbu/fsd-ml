@@ -8,3 +8,13 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.custom-snack-bar {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(45, 45, 45)
+}
+
+.custom-snack-bar button {
+    background-color: rgb(63, 81, 181, 0.9);
+    color:rgb(255, 255, 255);
+}

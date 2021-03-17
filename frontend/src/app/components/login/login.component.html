@@ -5,14 +5,14 @@
                 <img class="keychain-img" src="../../../assets/login/keychain.png">
             </mat-grid-tile>
             <mat-grid-tile colspan="1">
-                <form [formGroup]="profileForm">  
+                <form [formGroup]="loginForm" class="login-form">  
                     <div class="title">
                         <span class="mat-display-2">User Login</span>
                     </div>
                     <div class="credentials">
                         <mat-form-field class="control">
                             <mat-label>Email / ID</mat-label>
-                            <input matInput type="email" placeholder="john.doe@contoso.com" formControlName="userName">
+                            <input matInput type="email" placeholder="john.doe@contoso.com" formControlName="username">
                         </mat-form-field>
                     </div>
                     <div>
@@ -22,7 +22,7 @@
                         </mat-form-field>
                     </div>
                     <div>
-                        <a mat-raised-button [disabled]="!profileForm.valid" class="control login-button" color="primary" (click)="loginClick()">LOGIN</a>
+                        <a mat-raised-button [disabled]="!loginForm.valid" class="control login-button" color="primary" (click)="onLoginClick()">LOGIN</a>
                     </div>
                     <div class="forgot-link">
                         <a href="/forgot">Forgot username/password?</a>

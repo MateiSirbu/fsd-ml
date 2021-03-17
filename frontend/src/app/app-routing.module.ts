@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UploadComponent } from './components/upload/upload.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'desserts', component: DessertsComponent },
   { path: 'upload', component: UploadComponent },

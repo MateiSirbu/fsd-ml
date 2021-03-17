@@ -12,15 +12,16 @@ export class RestRequestService {
 
   getItems(url): Observable<any> {
     console.log('Request is sent!');
-    return this.http.get(this.baseUrl+url);
+    return this.http.get(this.baseUrl + url);
   }
 
-  postItems(body,url): Observable<any> {
+  postItems(body, url): Observable<any> {
     console.log('Request is sent!');
-    const headers =  {
-      headers: new  HttpHeaders({ 
-        'Content-Type': 'application/'})
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/'
+      })
     };
-    return this.http.post(this.baseUrl+url,body, headers)
+    return this.http.post(this.baseUrl + url, body, headers)
   }
 }
