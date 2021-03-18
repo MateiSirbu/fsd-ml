@@ -11,12 +11,12 @@ export class RestRequestService {
   constructor(private http: HttpClient) { }
 
   getItems(url): Observable<any> {
-    console.log('Request is sent!');
+    console.log('Get Request is sent!');
     return this.http.get(this.baseUrl + url);
   }
 
   postItems(body, url): Observable<any> {
-    console.log('Request is sent!');
+    console.log('PostRequest is sent!');
     const headers = {
       headers: new HttpHeaders({
         'Content-Type': 'application/'

@@ -31,6 +31,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
+import {DessertService } from './service/desserts.service';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
     multi: true
-  }],
+  },DessertListMockService, DessertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

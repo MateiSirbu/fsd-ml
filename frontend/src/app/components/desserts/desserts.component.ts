@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { DessertItem } from './deserts-items.interface';
 import { DessertListMockService } from './desserts-items.mock.service';
+import { DessertService} from '../../service/desserts.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-desserts',
@@ -11,6 +13,7 @@ import { DessertListMockService } from './desserts-items.mock.service';
 })
 export class DessertsComponent implements OnInit {
 
+  observableDessert$$: Observable<DessertItem>;
   dessertsItems: DessertItem[];
   desertsColumns: string[] = [
     'select',
@@ -24,15 +27,20 @@ export class DessertsComponent implements OnInit {
     'Iron'
   ];
 
-  constructor(private service: DessertListMockService,
+  constructor(
+    private fakeService: DessertListMockService,
+    private service: DessertService,
     private userService: UserService,
     private router: Router) {
+    
+    /*
     if (!this.userService.isLoggedIn())
       this.router.navigate(['/login'])
+      */
   }
 
   ngOnInit(): void {
-    this.dessertsItems = this.service.getData();
+    this.observableDessert$$ = this.service.getItems();
   }
 
 }
