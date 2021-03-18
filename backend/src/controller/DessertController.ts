@@ -7,7 +7,8 @@ export class DessertController {
     private desertRepository = getRepository(Dessert);
 
     async GetAllDesserts(request: Request, response: Response, next: NextFunction) {
-        let result = this.desertRepository.find();
+        let result = await this.desertRepository.find();
+        console.log(result)
         if (result) {
             return response.json(result)
         } else {
@@ -16,7 +17,7 @@ export class DessertController {
     }
 
     async GetOneDessert(request: Request, response: Response, next: NextFunction) {
-        let result = this.desertRepository.findOne(request.params.dessert);
+        let result = await this.desertRepository.findOne(request.params.dessert);
         if (result) {
             return response.json(result)
         } else {
