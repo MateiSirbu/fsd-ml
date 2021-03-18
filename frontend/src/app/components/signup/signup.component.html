@@ -7,7 +7,7 @@
             <mat-grid-tile colspan="1">
                 <form [formGroup]="loginForm" class="login-form">  
                     <div class="title">
-                        <span class="mat-display-2">User Login</span>
+                        <span class="mat-display-2">Create an account</span>
                     </div>
                     <div class="credentials">
                         <mat-form-field class="control">
@@ -22,13 +22,7 @@
                         </mat-form-field>
                     </div>
                     <div>
-                        <a mat-raised-button [disabled]="!loginForm.valid" class="control login-button" color="primary" (click)="onLoginClick()">LOGIN</a>
-                    </div>
-                    <div class="link">
-                        <a href="/forgot">Forgot username/password?</a>
-                    </div>
-                    <div class="link">
-                        <a href="/signup">Don't have an account?</a>
+                        <a mat-raised-button [disabled]="!loginForm.valid" class="control login-button" color="primary" (click)="onSignUpClick()">SIGN UP</a>
                     </div>
                 </form>
             </mat-grid-tile>

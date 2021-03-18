@@ -4,10 +4,10 @@ import { Dessert } from "../entity/Dessert";
 
 export class DessertController {
 
-    private desertRepository = getRepository(Dessert);
+    private dessertRepository = getRepository(Dessert);
 
-    async GetAllDesserts(request: Request, response: Response, next: NextFunction) {
-        let result = await this.desertRepository.find();
+    async getAllDesserts(request: Request, response: Response, next: NextFunction) {
+        let result = await this.dessertRepository.find();
         console.log(result)
         if (result) {
             return response.json(result)
@@ -16,8 +16,8 @@ export class DessertController {
         }
     }
 
-    async GetOneDessert(request: Request, response: Response, next: NextFunction) {
-        let result = await this.desertRepository.findOne(request.params.dessert);
+    async getOneDessert(request: Request, response: Response, next: NextFunction) {
+        let result = await this.dessertRepository.findOne(request.params.dessert);
         if (result) {
             return response.json(result)
         } else {
@@ -25,27 +25,27 @@ export class DessertController {
         }
     }
 
-    async DeleteDessert(request: Request, response: Response, next: NextFunction) {
-        let desertToDelete = await this.desertRepository.findOne(request.params.dessert);
+    async deleteDessert(request: Request, response: Response, next: NextFunction) {
+        let desertToDelete = await this.dessertRepository.findOne(request.params.dessert);
         if (desertToDelete) {
-            await this.desertRepository.remove(desertToDelete);
+            await this.dessertRepository.remove(desertToDelete);
         } else {
-            response.statusMessage = "This item is not in the database"
+            response.statusMessage = "This item is not in the database."
             return response.sendStatus(404)
         }
     }
 
-    async CreateDessert(request: Request, response: Response, next: NextFunction) {
+    async createDessert(request: Request, response: Response, next: NextFunction) {
         let dessert = new Dessert;
-        dessert.Dessert = request.body.dessert
-        dessert.Calories = parseInt(request.body.calories)
-        dessert.Fat = parseInt(request.body.fat)
-        dessert.Carbs = parseInt(request.body.carbs)
-        dessert.Protein = parseInt(request.body.protein)
-        dessert.Sodium = parseInt(request.body.sodium)
-        dessert.Calcium = request.body.calcium
-        dessert.Iron = request.body.iron
-        await this.desertRepository.insert(dessert);
+        dessert.dessert = request.body.dessert
+        dessert.calories = parseInt(request.body.calories)
+        dessert.fat = parseInt(request.body.fat)
+        dessert.carbs = parseInt(request.body.carbs)
+        dessert.protein = parseInt(request.body.protein)
+        dessert.sodium = parseInt(request.body.sodium)
+        dessert.calcium = request.body.calcium
+        dessert.iron = request.body.iron
+        await this.dessertRepository.insert(dessert);
         return response.sendStatus(200)
     }
 }

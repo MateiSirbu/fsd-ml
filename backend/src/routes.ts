@@ -21,21 +21,21 @@ export const Routes = [{
     method: "get",
     route: "/desserts",
     controller: DessertController,
-    action: "GetAllDesserts"
+    action: "getAllDesserts"
 }, {
     method: "get",
     route: "/desserts/{id}",
     controller: DessertController,
-    action: "GetOneDessert"
+    action: "getOneDessert"
 }, {
     method: "post",
     route: "/desserts",
     controller: DessertController,
-    action: "CreateDessert"
+    action: "createDessert"
 },{
     method: "delete",
     route: "/desserts/{id}",
     controller: DessertController,
-    action: "DeleteDessert"
+    action: "deleteDessert"
     },
 ];

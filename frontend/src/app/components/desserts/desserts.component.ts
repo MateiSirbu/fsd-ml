@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { DessertItem } from './deserts-items.interface';
-import { DessertListMockService } from './desserts-items.mock.service';
-import { DessertService } from '../../service/desserts.service';
+import { DessertService } from '../../services/desserts.service';
 import { Observable } from 'rxjs';
+import { Dessert } from 'src/app/entities/dessert.entity';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-desserts',
@@ -12,23 +12,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./desserts.component.scss']
 })
 export class DessertsComponent implements OnInit {
-
-  observableDessert$$: Observable<DessertItem>;
-  dessertsItems: DessertItem[];
-  desertsColumns: string[] = [
-    'select',
-    'Dessert',
-    'Calories',
-    'Fat',
-    'Carbs',
-    'Protein',
-    'Sodium',
-    'Calcium',
-    'Iron'
-  ];
+  dessertsList: Dessert[]
+  dessertsColumns: string[]
 
   constructor(
-    private service: DessertService,
+    private dessertService: DessertService,
     private userService: UserService,
     private router: Router) {
 
@@ -37,7 +25,12 @@ export class DessertsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.observableDessert$$ = this.service.getItems()
+    this.dessertsColumns = this.dessertService.getHeader()
+    this.dessertService.getDesserts()
+      .pipe(
+        tap((result: Dessert[]) => this.dessertsList = result)
+      )
+      .subscribe()
   }
 
 }

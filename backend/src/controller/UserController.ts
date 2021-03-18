@@ -47,7 +47,8 @@ export class UserController {
         try {
             await this.userRepository.save(newUser)
             response.statusMessage = "User enrollment successful."
-            return response.sendStatus(200)
+            response.statusCode = 200
+            return response.send()
         }
         catch {
             response.statusMessage = "Cannot enrol user."

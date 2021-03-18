@@ -7,27 +7,27 @@ export class Dessert {
     id: number;
 
     @Column()
-    Dessert: string;
+    dessert: string;
 
     @Column()
-    Calories: number;
+    calories: number;
 
     @Column()
-    Fat: number;
+    fat: number;
 
     @Column()
-    Carbs: number;
+    carbs: number;
 
     @Column()
-    Protein: number;
+    protein: number;
 
     @Column()
-    Sodium: number;
+    sodium: number;
 
     @Column()
-    Calcium: string;
+    calcium: string;
 
     @Column()
-    Iron: string;
+    iron: string;
 
 }

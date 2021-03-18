@@ -22,17 +22,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DessertListMockService } from './components/desserts/desserts-items.mock.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-import { UserService } from './services/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar'
-
-import {DessertService } from './service/desserts.service';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SignupComponent } from './components/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +37,8 @@ import {DessertService } from './service/desserts.service';
     UploadComponent,
     DessertsComponent,
     HomeComponent,
-    ForgotComponent
+    ForgotComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +69,7 @@ import {DessertService } from './service/desserts.service';
     provide: HTTP_INTERCEPTORS,
     useClass: Interceptor,
     multi: true
-  },DessertListMockService, DessertService],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
