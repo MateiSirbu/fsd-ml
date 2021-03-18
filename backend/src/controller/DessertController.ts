@@ -2,50 +2,49 @@ import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { Dessert } from "../entity/Dessert";
 
-import { Controller, Param, Body, Get, Post, Put, Delete } from 'routing-controllers';
-import { error } from "console";
-
 export class DessertController {
 
     private desertRepository = getRepository(Dessert);
 
-    /*
-    @Get('/desserts')
-    getAll() {
-    return this.desertRepository.find();
-    }
-
-    @Post('/desserts')
-    post(@Body() dessert: Dessert) {
-    return this.desertRepository.insert(dessert);
-    }
-    */
-    
     async GetAllDesserts(request: Request, response: Response, next: NextFunction) {
-        return this.desertRepository.find();
+        let result = this.desertRepository.find();
+        if (result) {
+            return response.json(result)
+        } else {
+            return response.sendStatus(404)
+        }
     }
 
     async GetOneDessert(request: Request, response: Response, next: NextFunction) {
-        return this.desertRepository.findOne(request.params.email);
+        let result = this.desertRepository.findOne(request.params.dessert);
+        if (result) {
+            return response.json(result)
+        } else {
+            return response.sendStatus(404)
+        }
     }
 
     async DeleteDessert(request: Request, response: Response, next: NextFunction) {
-        let deleteDesert = await this.desertRepository.findOne(request.params.id_desert);
-        if (deleteDesert) {
-            await this.desertRepository.remove(deleteDesert);
+        let desertToDelete = await this.desertRepository.findOne(request.params.dessert);
+        if (desertToDelete) {
+            await this.desertRepository.remove(desertToDelete);
         } else {
-            error("This item is not in the database");
+            response.statusMessage = "This item is not in the database"
+            return response.sendStatus(404)
         }
     }
 
     async CreateDessert(request: Request, response: Response, next: NextFunction) {
-         let dessertToUpdate = await this.desertRepository.findOne(request.params.id_desert);
-
-         if (dessertToUpdate){
-            await this.desertRepository.update(request.body,dessertToUpdate);
-         } else {
-            await this.desertRepository.save(request.body);
-         }
+        let dessert = new Dessert;
+        dessert.Dessert = request.body.dessert
+        dessert.Calories = parseInt(request.body.calories)
+        dessert.Fat = parseInt(request.body.fat)
+        dessert.Carbs = parseInt(request.body.carbs)
+        dessert.Protein = parseInt(request.body.protein)
+        dessert.Sodium = parseInt(request.body.sodium)
+        dessert.Calcium = request.body.calcium
+        dessert.Iron = request.body.iron
+        await this.desertRepository.insert(dessert);
+        return response.sendStatus(200)
     }
-
 }

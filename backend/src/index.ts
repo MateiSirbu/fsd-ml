@@ -16,7 +16,7 @@ createConnection().then(async connection => {
         (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
             const result = (new (route.controller as any))[route.action](req, res, next);
             if (result instanceof Promise) {
-                result.then(result => console.log (result.statusCode + " " + result.statusMessage));
+                result.then(result => console.log(result.statusCode + " " + result.statusMessage));
             } else if (result !== null && result !== undefined) {
                 console.log("Undefined result"); res.json(result);
             }
@@ -25,7 +25,7 @@ createConnection().then(async connection => {
 
     // start express server
     app.listen(3000);
-    
+
     console.log("Express server has started on port 3000.");
 
 }).catch(error => console.log(error));

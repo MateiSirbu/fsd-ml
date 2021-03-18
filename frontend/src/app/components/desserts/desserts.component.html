@@ -4,7 +4,6 @@
 </div>
     
 
-<!--
 <div class="content">
     <h1>List of desserts</h1>
 
@@ -25,42 +24,42 @@
 
             <ng-container matColumnDef="Dessert">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Dessert (100g serving) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Dessert}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.dessert}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Calories">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Calories </th>
-                <td mat-cell *matCellDef="let element"> {{element.Calories}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Fat">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Fat (g) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Fat}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fat}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Carbs">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Carbs (g) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Carbs}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.carbs}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Protein">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Protein (g) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Protein}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.protein}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Sodium">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Sodium (mg) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Sodium}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.sodium}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Calcium">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Calcium (%) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Calcium}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.calcium}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Iron">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Iron (%) </th>
-                <td mat-cell *matCellDef="let element"> {{element.Iron}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.iron}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="desertsColumns"></tr>
@@ -68,4 +67,3 @@
         </table>
     </div>
 </div>
--->

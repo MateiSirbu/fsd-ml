@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { DessertItem } from './deserts-items.interface';
 import { DessertListMockService } from './desserts-items.mock.service';
-import { DessertService} from '../../service/desserts.service';
+import { DessertService } from '../../service/desserts.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -28,19 +28,16 @@ export class DessertsComponent implements OnInit {
   ];
 
   constructor(
-    private fakeService: DessertListMockService,
     private service: DessertService,
     private userService: UserService,
     private router: Router) {
-    
-    /*
+
     if (!this.userService.isLoggedIn())
       this.router.navigate(['/login'])
-      */
   }
 
   ngOnInit(): void {
-    this.observableDessert$$ = this.service.getItems();
+    this.observableDessert$$ = this.service.getItems()
   }
 
 }
