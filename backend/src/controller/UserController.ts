@@ -11,14 +11,6 @@ export class UserController {
 
     private userRepository = getRepository(User);
 
-    verifyJwt = jwt({
-        secret: fs.readFileSync(env.JWT_PUBLIC_KEY),
-        algorithms: ['RS256'],
-        getToken: function fromReqBody(req) {
-            return req.body.idToken;
-        }
-    })
-
     validateCredentials(user: User, password: string) {
         return user.hash
             == crypto.PBKDF2(password, user.salt, { keySize: env.PBKDF2_KEY_SIZE, iterations: env.PBKDF2_ITERATIONS }).toString(crypto.enc.Hex);
@@ -58,7 +50,7 @@ export class UserController {
     }
 
     async login(request: Request, response: Response, next: NextFunction) {
-        let user = await this.userRepository.findOne({email: request.body.email});
+        let user = await this.userRepository.findOne({ email: request.body.email });
         if (user === null) {
             response.statusMessage = "User not found."
             response.statusCode = 404
@@ -72,7 +64,7 @@ export class UserController {
                     expiresIn: 86400,
                     subject: String(user.id),
                 }
-                const token = jsonwebtoken.sign({}, { key: privateKey, passphrase: 'devteam' }, signOptions,)
+                const token = jsonwebtoken.sign({}, privateKey, signOptions)
                 response.statusMessage = "Valid credentials. Sending token to frontend."
                 response.statusCode = 200
                 return response.json({ idToken: token, expiresIn: 86400 })
