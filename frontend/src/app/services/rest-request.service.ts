@@ -7,21 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class RestRequestService {
 
-  baseUrl = "http://localhost:4200/";
+  baseUrl = "http://localhost:4200/api/";
+
   constructor(private http: HttpClient) { }
 
-  getItems(url): Observable<any> {
-    console.log('Get Request is sent!');
+  get(url): Observable<any> {
     return this.http.get(this.baseUrl + url);
   }
 
-  postItems(body, url): Observable<any> {
-    console.log('PostRequest is sent!');
+  post(body, path): Observable<any> {
     const headers = {
       headers: new HttpHeaders({
         'Content-Type': 'application/'
       })
     };
-    return this.http.post(this.baseUrl + url, body, headers)
+    return this.http.post(this.baseUrl + path, body, headers)
   }
 }

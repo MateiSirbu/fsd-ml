@@ -1,12 +1,11 @@
-import { Component, OnInit, ɵɵsetComponentScope } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { DessertService } from '../../services/desserts.service';
 import { EMPTY, Observable } from 'rxjs';
 import { Dessert } from 'src/app/entities/dessert.entity';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-desserts',
@@ -18,18 +17,13 @@ export class DessertsComponent implements OnInit {
   dessertsColumns: string[]
 
   constructor(
-    private dessertService: DessertService,
-    private userService: UserService,
-    private router: Router,
+    private http: HttpClient,
     private snackBar: MatSnackBar) {
-
-    // if (!this.userService.isLoggedIn())
-    //   this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {
-    this.dessertsColumns = this.dessertService.getHeader()
-    this.dessertService.getDesserts()
+    this.dessertsColumns = this.fetchHeader()
+    this.fetchDesserts()
       .pipe(tap((result: Dessert[]) => this.dessertsList = result))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);
@@ -44,4 +38,18 @@ export class DessertsComponent implements OnInit {
       panelClass: ['custom-snack-bar']
     });
   }
+
+  fetchHeader() {
+    return ['select', 'dessert', 'calories', 'fat',
+      'carbs', 'protein', 'sodium', 'calcium', 'iron'
+    ];
+  }
+
+  fetchDesserts(): Observable<Dessert[]> {
+    return this.http.get<Dessert[]>("/api/desserts");
+  }
+
+  addDesserts(dessert: Dessert) {
+    return this.http.post('/api/signup', dessert);
+  };
 }

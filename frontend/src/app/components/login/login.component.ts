@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { HeaderStateService } from '../../services/header-state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, tap } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { User } from 'src/app/entities/user.entity';
 
 @Component({
   selector: 'app-login',
@@ -15,27 +16,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({  
+  loginForm = new FormGroup({
     username: new FormControl("", [Validators.minLength(2), Validators.required]),
     password: new FormControl("", [Validators.minLength(8), Validators.required])
   });
 
 
-  constructor(private snackBar: MatSnackBar,
-    private userService: UserService,
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
     public headerService: HeaderStateService,
     private router: Router) {
   }
 
-  ngOnInit(): void { 
-    if (this.userService.isLoggedIn())
-      this.router.navigate(['/'])
-  }
+  ngOnInit(): void { }
 
   onLoginClick(): void {
     this.loginForm.get('username').disable();
     this.loginForm.get('password').disable();
-    this.userService.logIn(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
+    this.logIn(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
       .pipe(tap((resp) => {
         if (resp != null) {
           this.openSnackBar(`Login successful.`);
@@ -65,4 +64,31 @@ export class LoginComponent implements OnInit {
       panelClass: ['custom-snack-bar']
     });
   }
+
+  private createSession(authResult) {
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+  }
+
+  logIn(email: string, password: string) {
+    return this.http.post('/api/login', new User({ email: email, password: password }))
+      .pipe(tap(res => this.createSession(res)), shareReplay());
+  }
+
+  signUp(email: string, password: string) {
+    return this.http.post('/api/signup', new User({ email: email, password: password }));
+  }
+
+  logOut() {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+  }
+
+  isLoggedIn() {
+    const expiration = localStorage.getItem("expires_at");
+    const expiresAt = JSON.parse(expiration);
+    return moment().isBefore(moment(expiresAt))
+  }
+
 }

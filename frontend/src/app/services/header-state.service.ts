@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
-import { UserService } from './user.service';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeaderStateService {
 
-  constructor(private userService: UserService) {}
-  
+  constructor() { }
+
+  isLoggedIn() {
+    const expiration = localStorage.getItem("expires_at");
+    const expiresAt = JSON.parse(expiration);
+    return moment().isBefore(moment(expiresAt))
+  }
+
   willShowHeader() {
-    return this.userService.isLoggedIn()
+    return this.isLoggedIn();
   }
 }

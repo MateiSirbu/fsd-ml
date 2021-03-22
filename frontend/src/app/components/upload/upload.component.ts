@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileInput, FileInputComponent } from 'ngx-material-file-input';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-upload',
@@ -11,10 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UploadComponent implements OnInit {
   public imgURL: any;
 
-  constructor(private userService: UserService, private router: Router) {
-    if (!this.userService.isLoggedIn())
-      this.router.navigate(['/login'])
-  }
+  constructor() { }
 
   ngOnInit(): void { }
 

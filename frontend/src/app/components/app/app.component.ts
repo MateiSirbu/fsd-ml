@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import { HeaderStateService } from '../../services/header-state.service'
 
 @Component({
@@ -12,13 +11,17 @@ import { HeaderStateService } from '../../services/header-state.service'
 export class AppComponent {
   title = 'FSD';
 
-  constructor(public headerService: HeaderStateService, 
-    private userService: UserService,
+  constructor(public headerService: HeaderStateService,
     private router: Router) {
-    }
+  }
+
+  clearStorage() {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("expires_at");
+  }
 
   logOut() {
-    this.userService.logOut()
+    this.clearStorage()
     this.router.navigate(['/login'])
   }
 }

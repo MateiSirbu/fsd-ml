@@ -1,0 +1,14 @@
+{
+  "name": "insomnia-to-postman-converter",
+  "version": "1.0.0",
+  "description": "Converts Insomnia API configurations to Postman.",
+  "main": "tool.js",
+  "scripts": {
+    "start": "node tool.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "har2postman": "^0.7.0"
+  }
+}

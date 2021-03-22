@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../entity/User";
 import * as fs from "fs";
 import { env } from "../env";
-import * as jwt from "express-jwt";
 import * as crypto from "crypto-js";
 import * as jsonwebtoken from "jsonwebtoken";
 
