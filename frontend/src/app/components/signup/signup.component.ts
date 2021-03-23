@@ -3,11 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeaderStateService } from '../../services/header-state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from 'src/app/entities/user.entity';
+import { RestRequestService } from 'src/app/services/rest-request.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit {
   });
 
   constructor(
-    private http: HttpClient,
+    private rest: RestRequestService,
     private snackBar: MatSnackBar,
     public headerService: HeaderStateService,
     private router: Router) {
@@ -64,8 +65,7 @@ export class SignupComponent implements OnInit {
   }
 
   signUp(email: string, password: string) {
-    return this.http.post('/api/signup', new User({ email: email, password: password }));
+    return this.rest.post('signup', new User({ email: email, password: password }))
   }
-
 
 }

@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { RestRequestService } from 'src/app/services/rest-request.service';
 
 @Component({
   selector: 'app-desserts',
@@ -17,7 +18,7 @@ export class DessertsComponent implements OnInit {
   dessertsColumns: string[]
 
   constructor(
-    private http: HttpClient,
+    private rest: RestRequestService,
     private snackBar: MatSnackBar) {
   }
 
@@ -46,10 +47,10 @@ export class DessertsComponent implements OnInit {
   }
 
   fetchDesserts(): Observable<Dessert[]> {
-    return this.http.get<Dessert[]>("/api/desserts");
+    return this.rest.get('desserts');
   }
 
   addDesserts(dessert: Dessert) {
-    return this.http.post('/api/signup', dessert);
+    return this.rest.post('signup', dessert);
   };
 }

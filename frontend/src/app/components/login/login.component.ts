@@ -3,11 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HeaderStateService } from '../../services/header-state.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from 'src/app/entities/user.entity';
+import { RestRequestService } from 'src/app/services/rest-request.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-    private http: HttpClient,
+    private rest: RestRequestService,
     private snackBar: MatSnackBar,
     public headerService: HeaderStateService,
     private router: Router) {
@@ -72,12 +73,12 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(email: string, password: string) {
-    return this.http.post('/api/login', new User({ email: email, password: password }))
+    return this.rest.post('login', new User({ email: email, password: password }))
       .pipe(tap(res => this.createSession(res)), shareReplay());
   }
 
   signUp(email: string, password: string) {
-    return this.http.post('/api/signup', new User({ email: email, password: password }));
+    return this.rest.post('signup', new User({ email: email, password: password }))
   }
 
   logOut() {

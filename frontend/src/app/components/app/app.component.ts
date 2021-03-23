@@ -9,11 +9,11 @@ import { HeaderStateService } from '../../services/header-state.service'
 })
 
 export class AppComponent {
-  title = 'FSD';
+  title = 'FSD-ML';
 
-  constructor(public headerService: HeaderStateService,
-    private router: Router) {
-  }
+  constructor(
+    public headerService: HeaderStateService,
+    private router: Router) { }
 
   clearStorage() {
     localStorage.removeItem("id_token");

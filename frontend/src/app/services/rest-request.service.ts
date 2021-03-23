@@ -11,16 +11,16 @@ export class RestRequestService {
 
   constructor(private http: HttpClient) { }
 
-  get(url): Observable<any> {
-    return this.http.get(this.baseUrl + url);
+  get(route): Observable<any> {
+    return this.http.get(this.baseUrl + route);
   }
 
-  post(body, path): Observable<any> {
+  post(route, body): Observable<any> {
     const headers = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/'
+        'Content-Type': 'application/json'
       })
     };
-    return this.http.post(this.baseUrl + path, body, headers)
+    return this.http.post(this.baseUrl + route, body, headers)
   }
 }
