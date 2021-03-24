@@ -7,36 +7,36 @@ export const Routes = [
         route: "/login",
         controller: UserController,
         action: "login",
-        restricted: false
+        guard: false
     }, {
         method: "post",
         route: "/signup",
         controller: UserController,
         action: "signUp",
-        restricted: false
+        guard: false
     }, {
         method: "get",
         route: "/desserts",
         controller: DessertController,
         action: "getAllDesserts",
-        restricted: true
+        guard: true
     }, {
         method: "get",
         route: "/desserts/{id}",
         controller: DessertController,
         action: "getOneDessert",
-        restricted: true
+        guard: true
     }, {
         method: "post",
         route: "/desserts",
         controller: DessertController,
         action: "createDessert",
-        restricted: true
+        guard: true
     }, {
         method: "delete",
         route: "/desserts/{id}",
         controller: DessertController,
         action: "deleteDessert",
-        restricted: true
+        guard: true
     },
 ];

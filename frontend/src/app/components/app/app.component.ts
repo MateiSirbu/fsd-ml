@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenManagerService } from 'src/app/services/token-manager.service';
 import { HeaderStateService } from '../../services/header-state.service'
 
 @Component({
@@ -13,15 +14,12 @@ export class AppComponent {
 
   constructor(
     public headerService: HeaderStateService,
-    private router: Router) { }
-
-  clearStorage() {
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
-  }
+    private router: Router,
+    public token: TokenManagerService) { }
 
   logOut() {
-    this.clearStorage()
+    this.token.deleteToken()
     this.router.navigate(['/login'])
+    window.location.reload()
   }
 }

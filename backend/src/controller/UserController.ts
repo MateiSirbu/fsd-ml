@@ -30,6 +30,10 @@ export class UserController {
     }
 
     async signUp(request: Request, response: Response, next: NextFunction) {
+        if (await this.userRepository.findOne({ email: request.body.email }) != null) {
+            response.statusMessage = "An account has already been registered using this e-mail address"
+            return response.sendStatus(403)
+        }
         const saltAndHash = this.hashPassword(request.body.password)
         const newUser = new User;
         newUser.email = request.body.email
@@ -37,12 +41,12 @@ export class UserController {
         newUser.hash = saltAndHash.hash
         try {
             await this.userRepository.save(newUser)
-            response.statusMessage = "User enrollment successful."
+            response.statusMessage = "User enrollment successful"
             response.statusCode = 200
             return response.send()
         }
         catch {
-            response.statusMessage = "Cannot enrol user."
+            response.statusMessage = "Cannot enrol user"
             return response.sendStatus(500)
         }
 
@@ -51,9 +55,8 @@ export class UserController {
     async login(request: Request, response: Response, next: NextFunction) {
         let user = await this.userRepository.findOne({ email: request.body.email });
         if (user === null) {
-            response.statusMessage = "User not found."
-            response.statusCode = 404
-            return response
+            response.statusMessage = "Incorrect credentials"
+            return response.sendStatus(403)
         }
         if (user instanceof User) {
             const privateKey = fs.readFileSync(env.JWT_PRIVATE_KEY)
@@ -64,15 +67,16 @@ export class UserController {
                     subject: String(user.id),
                 }
                 const token = jsonwebtoken.sign({}, privateKey, signOptions)
-                response.statusMessage = "Valid credentials. Sending token to frontend."
+                response.statusMessage = "Valid credentials. Sending token to frontend"
                 response.statusCode = 200
                 return response.json({ idToken: token, expiresIn: 86400 })
             } else {
-                response.statusMessage = "Incorrect credentials."
-                return response.sendStatus(401)
+                response.statusMessage = "Incorrect credentials"
+                return response.sendStatus(403)
             }
         } else {
-            return response.sendStatus(401)
+            response.statusMessage = "Incorrect credentials"
+            return response.sendStatus(403)
         }
     }
 

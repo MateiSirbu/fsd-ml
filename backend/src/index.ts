@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createConnection, UsingJoinColumnIsNotAllowedError } from "typeorm";
+import { createConnection } from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Request, Response, NextFunction } from "express";
@@ -35,7 +35,7 @@ createConnection().then(async connection => {
     // register express routes from defined application routes
     Routes.forEach(route => {
         (app as any)[route.method](route.route, (req: Request, res: Response, next: NextFunction) => {
-            if (!route.restricted || (route.restricted && isJwtValid(req, res, next))) {
+            if (!route.guard || (route.guard && isJwtValid(req, res, next))) {
                 const result = (new (route.controller as any))[route.action](req, res, next);
                 if (result instanceof Promise) {
                     result.then(result => console.log(result.statusCode + " " + result.statusMessage));

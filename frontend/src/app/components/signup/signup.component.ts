@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { User } from 'src/app/entities/user.entity';
 import { RestRequestService } from 'src/app/services/rest-request.service';
+import { TokenManagerService } from 'src/app/services/token-manager.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private rest: RestRequestService,
+    private token: TokenManagerService,
     private snackBar: MatSnackBar,
     public headerService: HeaderStateService,
     private router: Router) {
@@ -59,7 +61,7 @@ export class SignupComponent implements OnInit {
   }
 
   isLoggedIn() {
-    const expiration = localStorage.getItem("expires_at");
+    const expiration = this.token.getToken().expires_at
     const expiresAt = JSON.parse(expiration);
     return moment().isBefore(moment(expiresAt))
   }
