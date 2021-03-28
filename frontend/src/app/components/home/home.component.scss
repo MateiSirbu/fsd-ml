@@ -4,6 +4,7 @@
     background: #000;
     opacity: 0.55;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     text-align: center;
@@ -11,7 +12,7 @@
 .content span {
     color: #fff;
     font-weight: 500;
-    font-size: 1200%;
+    font-size: 1000%;
     line-height: 100%;
     position: relative;
     user-select: none;
@@ -29,4 +30,22 @@
 }
 .content img {
     mix-blend-mode: darken;
+}
+
+@media only screen and (max-width: 800px) {
+  .content {
+    font-size: 70%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .content {
+    font-size: 30%;
+  }
 }

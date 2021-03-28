@@ -1,9 +1,10 @@
 .content {
     padding: 20px 20px 20px 20px;
+    transform-origin:top left;
 }
 
 #preview-container {
-    width: 800px;
+    width: 600px;
     height: 600px;
     margin: 0 auto;
     border-radius: 15px 15px 15px 15px;
@@ -12,8 +13,8 @@
 }
 
 #image-container {
-    width: 700px;
-    height: 470px;
+    width: 500px;
+    height: 460px;
     margin: 0 auto;
     border: 2px solid #ccc;
     border-radius: 15px 15px 15px 15px;
@@ -34,4 +35,23 @@
 
 mat-form-field {
     float: right;
+}
+
+@media only screen and (max-width: 800px) {
+    .content{
+        transform: scale(0.8);
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+      .content{
+        transform: scale(0.6);
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .content{
+        transform: scale(0.5);
+    }
 }

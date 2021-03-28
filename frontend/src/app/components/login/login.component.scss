@@ -47,7 +47,7 @@ mat-card {
     width: 100%;
 }
 
-.title {
+.title{
     text-align: center;
     margin-bottom: 30px;
 }
@@ -62,5 +62,48 @@ a {
 
 
 .login-button {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    transform-origin:top left;
+}
+
+@media only screen and (max-width: 800px) {
+  .mat-display-2 {
+     font-size: 180%; 
+  }
+
+  .title {
+     margin-bottom: 10px;
+  }
+
+  .content {
+    font-size: 80%;
+  }
+
+  .login-button {
+      transform: scale(0.8);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    font-size: 55%;
+  }
+   .title {
+     margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .content {
+    font-size: 30%;
+  }
+
+   .title {
+     margin-bottom: 5px;
+  }
+
+    .login-button {
+      transform: scale(0.6);
+      margin-bottom: 0px;
+  }
 }
