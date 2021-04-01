@@ -1,5 +1,6 @@
 import { UserController } from "./controller/UserController";
 import { DessertController } from "./controller/DessertController";
+import { ModelController } from "./controller/ModelController";
 
 export const Routes = [
     {
@@ -38,5 +39,11 @@ export const Routes = [
         controller: DessertController,
         action: "deleteDessert",
         guard: true
-    },
+    }, {
+        method: "get",
+        route: "/evaluate",
+        controller: ModelController,
+        action: "evaluate",
+        guard: false
+    }
 ];
