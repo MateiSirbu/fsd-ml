@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { FileInput, FileInputComponent } from 'ngx-material-file-input';
 import { RestRequestService } from 'src/app/services/rest-request.service';
 
@@ -15,7 +16,8 @@ export class UploadComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private rest: RestRequestService
+    private rest: RestRequestService,
+    private router: Router
   ) { }
 
   ngOnInit(): void { }
@@ -31,8 +33,13 @@ export class UploadComponent implements OnInit {
     this.rest.post('/classify', formData, new HttpHeaders({
       'Content-Type': 'multipart/form-data'
     })).subscribe(
-      data => { this.openSnackBar(`Classification complete — your digit must be ${data.pred}`) },
-      error => { this.openSnackBar(error) })
+      data => {
+        this.openSnackBar(`Classification complete — your digit must be ${data.pred}, right?`);
+        this.redirectToHistory();
+      },
+      error => {
+        this.openSnackBar(error.statusText)
+      })
   }
 
   preview(fileInputComponent: FileInputComponent) {
@@ -52,6 +59,10 @@ export class UploadComponent implements OnInit {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     }
+  }
+
+  redirectToHistory() {
+    this.router.navigate(['/history'])
   }
 
   openSnackBar(message) {

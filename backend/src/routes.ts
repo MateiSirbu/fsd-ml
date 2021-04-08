@@ -27,12 +27,6 @@ export const Routes = [
         action: "getOneEntry",
         guard: true
     }, {
-        method: "post",
-        route: "/history",
-        controller: ClassificationController,
-        action: "createEntry",
-        guard: true
-    }, {
         method: "delete",
         route: "/history/{id}",
         controller: ClassificationController,

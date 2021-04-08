@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { Classification } from "../entity/Classification";
 import { MnistData } from "../logic/Data";
 import * as tf from '@tensorflow/tfjs-node';
-import { DataStorage, LayersModel } from "@tensorflow/tfjs-node";
+import { LayersModel } from "@tensorflow/tfjs-node";
 
 export class ClassificationController {
 
@@ -14,7 +14,7 @@ export class ClassificationController {
         this.data = new MnistData();
     }
 
-    private toArrayBuffer(buf) {
+    private toArrayBuffer(buf: Buffer) {
         var ab = new ArrayBuffer(buf.length);
         var view = new Uint8Array(ab);
         for (var i = 0; i < buf.length; ++i) {
@@ -45,14 +45,31 @@ export class ClassificationController {
     }
 
     async classify(request: Request, response: Response, next: NextFunction) {
-        const arrayBuf = this.toArrayBuffer((request.files.image as any).data);
+        let image: any = request.files.image
+        if (image.mimetype != 'image/png') {
+            response.statusMessage = "This image is not a PNG file."
+            return response.sendStatus(403)
+        }
+        const arrayBuf = this.toArrayBuffer(image.data);
         const model = await tf.loadLayersModel('file://./src/model/model.json');
         await this.data.loadSingleImage(arrayBuf)
-        let classificationResult = this.doClassification(model, this.data)
-        console.log(classificationResult)
+        if (this.data.testImages.length != 784) {
+            response.statusMessage = "Incorrect size or color space."
+            return response.sendStatus(403)
+        }
+        const classificationResult = this.doClassification(model, this.data)
+        const historyEntry = new Classification();
+        historyEntry.file = ((request.files.image as any).data as Buffer).toString('base64');
+        historyEntry.result = classificationResult[0]
+        historyEntry.timestamp = (new Date()).toISOString();
+        await this.createEntry(historyEntry)
         return response.json({
-            pred: classificationResult[0]
+            pred: historyEntry.result
         })
+    }
+
+    async createEntry(entry: Classification) {
+        await this.classificationRepository.insert(entry);
     }
 
     async evaluate(request: Request, response: Response, next: NextFunction) {
@@ -91,12 +108,5 @@ export class ClassificationController {
             response.statusMessage = "This item is not in the database."
             return response.sendStatus(404)
         }
-    }
-
-    async createEntry(request: Request, response: Response, next: NextFunction) {
-        let entry = new Classification;
-        entry.timestamp = request.body.timestamp
-        await this.classificationRepository.insert(entry);
-        return response.sendStatus(200)
     }
 }

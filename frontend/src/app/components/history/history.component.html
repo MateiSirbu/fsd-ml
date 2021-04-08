@@ -1,29 +1,21 @@
 <div class="content">
-    <h1>Your classifications</h1>
+    <h1>Uploaded images</h1>
     <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="classificationList" matSort class="mat-elevation-z8 table-striped">
-            <ng-container matColumnDef="select">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Preview </th>
-                <td mat-cell *matCellDef="let row">
-                    <button mat-mini-fab color="primary" aria-label="Preview">
-                        <mat-icon>visibility</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
+        <table mat-table [dataSource]="classificationList" matSort class="mat-elevation-z8">
 
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <ng-container matColumnDef="file">
+                <th mat-header-cell *matHeaderCellDef> Uploaded image </th>
+                <td mat-cell *matCellDef="let element"> <img [src]="'data:image/png;base64,' + element.file"> </td>
             </ng-container>
 
             <ng-container matColumnDef="timestamp">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Timestamp </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ISO 8601 timestamp </th>
                 <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="result">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> TensorFlow classification </th>
+                <td mat-cell *matCellDef="let element"> {{element.result}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="classificationColumns"></tr>

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { Classification } from 'src/app/entities/classification.entity';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestRequestService } from 'src/app/services/rest-request.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-history',
@@ -12,8 +14,9 @@ import { RestRequestService } from 'src/app/services/rest-request.service';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
-  classificationList: Classification[]
+  classificationList: MatTableDataSource<Classification>;
   classificationColumns: string[]
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private rest: RestRequestService,
@@ -23,7 +26,10 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
     this.classificationColumns = this.fetchHeader()
     this.fetchHistoryEntries()
-      .pipe(tap((result: Classification[]) => this.classificationList = result))
+      .pipe(tap((result: Classification[]) => {
+        this.classificationList = new MatTableDataSource(result);
+        this.classificationList.sort = this.sort;
+      }))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);
         return EMPTY;
@@ -39,7 +45,7 @@ export class HistoryComponent implements OnInit {
   }
 
   fetchHeader() {
-    return ['select', 'id', 'name', 'timestamp'];
+    return ['file', 'timestamp', 'result'];
   }
 
   fetchHistoryEntries(): Observable<Classification[]> {

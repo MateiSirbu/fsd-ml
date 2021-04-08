@@ -5,8 +5,13 @@ export class Classification {
 
     @PrimaryGeneratedColumn()
     id: number;
-    
-    @Column()
-    timestamp: Date;
 
+    @Column()
+    file: string;
+
+    @Column()
+    timestamp: string;
+
+    @Column()
+    result: number;
 }
