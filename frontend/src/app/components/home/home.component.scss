@@ -1,51 +1,37 @@
 .content {
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.55;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.55;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 .content span {
-    color: #fff;
-    font-weight: 500;
-    font-size: 1000%;
-    line-height: 100%;
-    position: relative;
-    user-select: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1000%;
+  line-height: 100%;
+  position: relative;
+  user-select: none;
 }
 .content .instructions {
-    font-size: 450%;
+  font-size: 450%;
 }
 .content img {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    pointer-events: none;
-    user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
 }
 .content img {
-    mix-blend-mode: darken;
+  mix-blend-mode: darken;
 }
-
-@media only screen and (max-width: 800px) {
-  .content {
-    font-size: 70%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .content {
-    font-size: 55%;
-  }
-}
-
-@media only screen and (max-width: 430px) {
-  .content {
-    font-size: 30%;
-  }
+.typography-texture {
+  width: 100%;
+  height: 100%;
 }

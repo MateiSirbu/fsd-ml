@@ -6,7 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestRequestService } from 'src/app/services/rest-request.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-history',
@@ -28,6 +29,7 @@ export class HistoryComponent implements OnInit {
     this.fetchHistoryEntries()
       .pipe(tap((result: Classification[]) => {
         this.classificationList = new MatTableDataSource(result);
+        this.sort.sort({ id: 'timestamp', start: 'desc' } as MatSortable)
         this.classificationList.sort = this.sort;
       }))
       .pipe(catchError((error: HttpErrorResponse) => {
@@ -45,7 +47,7 @@ export class HistoryComponent implements OnInit {
   }
 
   fetchHeader() {
-    return ['file', 'timestamp', 'result'];
+    return ['timestamp', 'file', 'result'];
   }
 
   fetchHistoryEntries(): Observable<Classification[]> {

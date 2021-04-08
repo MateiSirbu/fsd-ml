@@ -1,53 +1,19 @@
 .container {
-    background-repeat: no-repeat;
-    background: linear-gradient(60deg, #2D5880 0%, #6DA3B9 33%, #B1C5A4 66%, #e48947 100%);
-    background-clip: content-box, padding-box;
-    width: 100%;
-    height: 100%;
+  background-repeat: no-repeat;
+  background: linear-gradient(60deg, #2d5880 0%, #6da3b9 33%, #b1c5a4 66%, #e48947 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: overlay;
+  height: 100%;
 }
 
 mat-drawer {
-    border-width: 1px;
-    border-color: hsl(207, 25%, 64%);
-    background-color: #80a0bf;
-    box-shadow: 3px 10px 30px 3px rgb(119, 131, 142)
+  border-width: 1px;
+  border-color: hsl(207, 25%, 64%);
+  background-color: #80a0bf;
+  box-shadow: 3px 10px 30px 3px rgb(119, 131, 142);
 }
 
 mat-list-item {
   margin-bottom: 10px;
-}
-
-@media only screen and (max-width: 800px) {
-
-  .mat-icon {
-    transform: scale(0.8);
-  }
-
-  mat-list-item {
-     transform: scale(0.8);
-     margin-bottom: 8px;
-  }
-
-}
-
-@media only screen and (max-width: 600px) {
- .mat-icon {
-    transform: scale(0.7);
-  }
-
-   mat-list-item {
-     transform: scale(0.7);
-      margin-bottom: 6px;
-  }
-}
-
-@media only screen and (max-width: 430px) {
- .mat-icon {
-    transform: scale(0.6);
-  }
-
-  mat-list-item {
-     transform: scale(0.6);
-     margin-bottom: 4px;
-  }
 }

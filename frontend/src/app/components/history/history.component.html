@@ -1,20 +1,20 @@
 <div class="content">
-    <h1>Uploaded images</h1>
+    <h1>Previous classifications</h1>
     <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="classificationList" matSort class="mat-elevation-z8">
-
-            <ng-container matColumnDef="file">
-                <th mat-header-cell *matHeaderCellDef> Uploaded image </th>
-                <td mat-cell *matCellDef="let element"> <img [src]="'data:image/png;base64,' + element.file"> </td>
-            </ng-container>
+        <table mat-table [dataSource]="classificationList" matSort matSortDisableClear class="mat-elevation-z8">
 
             <ng-container matColumnDef="timestamp">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ISO 8601 timestamp </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ISO 8601 TIMESTAMP </th>
                 <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="file">
+                <th mat-header-cell *matHeaderCellDef> UPLOADED IMAGE </th>
+                <td mat-cell *matCellDef="let element"> <img [src]="'data:image/png;base64,' + element.file"> </td>
+            </ng-container>
+
             <ng-container matColumnDef="result">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> TensorFlow classification </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> TENSORFLOW CLASSIFICATION </th>
                 <td mat-cell *matCellDef="let element"> {{element.result}} </td>
             </ng-container>
 

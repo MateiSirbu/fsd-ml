@@ -25,21 +25,3 @@
 mat-form-field {
     width: 100%;
 }
-
-@media only screen and (max-width: 800px) {
-    .content {
-        transform: scale(0.8);
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .content {
-        transform: scale(0.6);
-    }
-}
-
-@media only screen and (max-width: 430px) {
-    .content {
-        transform: scale(0.5);
-    }
-}
