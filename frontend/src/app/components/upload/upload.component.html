@@ -1,9 +1,9 @@
 <div class="content">
-  <h1>Upload a picture</h1>
+  <h1>Submit a picture for analysis</h1>
   <div id="preview-container">
     <div id="upload-control">
       <mat-form-field appearance="standard">
-        <mat-label>Picture to preview</mat-label>
+        <mat-label>Picture to upload</mat-label>
         <ngx-mat-file-input #fileInput type="file" accept='image/*' (change)="preview(fileInput)"
           valuePlaceholder="Choose a picture"></ngx-mat-file-input>
         <mat-icon matSuffix>image</mat-icon>
@@ -13,7 +13,7 @@
       <img [src]="imgURL" height="200" *ngIf="imgURL">
     </div>
     <div id="submit-container">
-      <button mat-raised-button color="primary">SUBMIT</button>
+      <button mat-raised-button [disabled]="!file" (click)="submitImage()" color="primary">SUBMIT</button>
     </div>
 
   </div>

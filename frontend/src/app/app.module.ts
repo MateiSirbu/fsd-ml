@@ -6,7 +6,7 @@ import { AppComponent } from './components/app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { UploadComponent } from './components/upload/upload.component';
-import { DessertsComponent } from './components/desserts/desserts.component';
+import { HistoryComponent } from './components/history/history.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -35,7 +35,7 @@ import { SignupComponent } from './components/signup/signup.component'
     AppComponent,
     LoginComponent,
     UploadComponent,
-    DessertsComponent,
+    HistoryComponent,
     HomeComponent,
     ForgotComponent,
     SignupComponent

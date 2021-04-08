@@ -34,12 +34,11 @@ export class RestRequestService {
     return this.authorize(this.http.get(this.baseUrl + route));
   }
 
-  post(route, body): Observable<any> {
-    const headers = {
-      headers: new HttpHeaders({
+  post(route, body, headers?): Observable<any> {
+    if (headers == undefined)
+      headers = new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    };
     return this.authorize(this.http.post(this.baseUrl + route, body, headers))
 
   }

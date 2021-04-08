@@ -1,6 +1,5 @@
 import { UserController } from "./controller/UserController";
-import { DessertController } from "./controller/DessertController";
-import { ModelController } from "./controller/ModelController";
+import { ClassificationController } from "./controller/ClassificationController";
 
 export const Routes = [
     {
@@ -17,33 +16,39 @@ export const Routes = [
         guard: false
     }, {
         method: "get",
-        route: "/desserts",
-        controller: DessertController,
-        action: "getAllDesserts",
+        route: "/history",
+        controller: ClassificationController,
+        action: "getAllEntries",
         guard: true
     }, {
         method: "get",
-        route: "/desserts/{id}",
-        controller: DessertController,
-        action: "getOneDessert",
+        route: "/history/{id}",
+        controller: ClassificationController,
+        action: "getOneEntry",
         guard: true
     }, {
         method: "post",
-        route: "/desserts",
-        controller: DessertController,
-        action: "createDessert",
+        route: "/history",
+        controller: ClassificationController,
+        action: "createEntry",
         guard: true
     }, {
         method: "delete",
-        route: "/desserts/{id}",
-        controller: DessertController,
-        action: "deleteDessert",
+        route: "/history/{id}",
+        controller: ClassificationController,
+        action: "deleteEntry",
         guard: true
     }, {
         method: "get",
         route: "/evaluate",
-        controller: ModelController,
+        controller: ClassificationController,
         action: "evaluate",
-        guard: false
+        guard: true
+    }, {
+        method: "post",
+        route: "/classify",
+        controller: ClassificationController,
+        action: "classify",
+        guard: true
     }
 ];

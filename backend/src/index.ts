@@ -7,6 +7,7 @@ import { Routes } from "./routes";
 import { env } from "./env";
 import * as fs from "fs";
 import * as jsonwebtoken from "jsonwebtoken"
+import * as fileUpload from "express-fileupload"
 
 const isJwtValid = (req: Request, res: Response, next: NextFunction) => {
     let publicKey = fs.readFileSync(env.JWT_PUBLIC_KEY)
@@ -30,7 +31,10 @@ createConnection().then(async connection => {
 
     // create express app
     const app = express();
-    app.use(bodyParser.json());
+    app.use(bodyParser.json())
+    app.use(fileUpload({
+        useTempFiles: false
+    }));
 
     // register express routes from defined application routes
     Routes.forEach(route => {

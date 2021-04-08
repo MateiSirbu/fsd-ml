@@ -55,7 +55,22 @@ export class MnistData {
     this.shuffledTestIndex = 0;
   }
 
-  async load() {
+  async loadSingleImage(arrayBuf) {
+    const imgRequest = new Promise<void>(resolve => {
+      const reader = new PNGReader(arrayBuf);
+      return reader.parse((err, png) => {
+        const pixels = Float32Array.from(png.pixels).map(pixel => {
+          return pixel / 255;
+        });
+        this.datasetImages = pixels;
+        resolve();
+      });
+    });
+    await Promise.all([imgRequest]);
+    this.testImages = this.datasetImages
+  }
+
+  async loadGoogleDemo() {
     // Make a request for the MNIST sprited image.
     const imgRequest = fetch(MNIST_IMAGES_SPRITE_PATH)
       .then(resp => resp.arrayBuffer()).then(buffer => {
@@ -94,6 +109,8 @@ export class MnistData {
       this.datasetLabels.slice(0, NUM_CLASSES * NUM_TRAIN_ELEMENTS);
     this.testLabels =
       this.datasetLabels.slice(NUM_CLASSES * NUM_TRAIN_ELEMENTS);
+
+    console.log('Created train & test sets.')
   }
 
   nextTrainBatch(batchSize) {
