@@ -1,16 +1,39 @@
 .content {
-  padding: 40px 40px 40px 40px;
-  transform-origin: top left;
+  margin: 40px 40px 40px 40px;
+  padding: 0;
 }
 
 .mat-table {
   display: table;
-  flex-wrap: wrap;
   width: 100%;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.35);
+}
+
+.col-timestamp {
+  width: 33%;
+  min-width: 210px;
+}
+
+.col-file {
+  width: 33%;
+  min-width: 90%;
+}
+
+.col-result {
+  width: 30%;
 }
 
 ::ng-deep .mat-sort-header-sorted .mat-sort-header-arrow {
   opacity: 1 !important;
   transform: translateY(0px) !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .mat-elevation-z8 {
+    width: 450px;
+  }
+  .classifications {
+    padding-right: 40px;
+  }
 }

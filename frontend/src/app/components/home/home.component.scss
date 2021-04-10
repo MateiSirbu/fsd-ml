@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  overflow-x: hidden;
 }
 .content span {
   color: #fff;
@@ -16,9 +17,13 @@
   line-height: 100%;
   position: relative;
   user-select: none;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .content .instructions {
   font-size: 450%;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .content img {
   position: fixed;
@@ -31,7 +36,36 @@
 .content img {
   mix-blend-mode: darken;
 }
-.typography-texture {
-  width: 100%;
-  height: 100%;
+
+@media only screen and (max-height: 800px) {
+  .typography-texture {
+    width: 100%;
+  }  
+}
+
+@media only screen and (max-width: 800px) {
+  .content span {
+    font-size: 800%;
+  }
+  .content .instructions {
+    font-size: 350%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .content span {
+    font-size: 600%;
+  }
+  .content .instructions {
+    font-size: 300%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .content span {
+    font-size: 300%;
+  }
+  .content .instructions {
+    font-size: 250%;
+  }
 }
