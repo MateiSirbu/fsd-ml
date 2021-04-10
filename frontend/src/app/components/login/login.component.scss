@@ -36,6 +36,28 @@ mat-card {
     background-color: #ffffff
 }
 
+.hidden-img {
+    top: 0%;
+    bottom: 0%;
+    max-height: 20%;
+    max-width: 20%;
+    pointer-events: none;
+    opacity: 0;
+    display: block;
+    margin-left: 30px;
+    border-radius: 50%;
+    border: solid 1px rgb(165, 165, 165);
+    box-shadow: 5px 10px 5px 5px #888787;
+    user-select: none;
+    background-color: #ffffff
+}
+
+.hidden-image-placeholder{
+display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 .login-form {
     max-width: 350px;
     width: 85%;
@@ -91,6 +113,22 @@ a {
    .title {
      margin-bottom: 10px;
   }
+  .hidden-img {
+    opacity: 0.75;
+    max-height: 60%;
+    max-width: 60%;
+  }
+  .keychain-img {
+    opacity: 0;
+  }
+  .visible-image-placeholder{
+  transform: scaleX(0.1);
+  transform-origin: left;
+}
+.hidden-image-placeholder{
+  transform: translate(-80px);
+  transform-origin: left; 
+}
 }
 
 @media only screen and (max-width: 430px) {

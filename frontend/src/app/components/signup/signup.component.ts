@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isLoggedIn())
-      this.router.navigate(['/'])
+      this.router.navigate(['/home'])
   }
 
   onSignUpClick(): void {
@@ -42,7 +42,7 @@ export class SignupComponent implements OnInit {
     this.signUp(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
       .pipe(tap((resp) => {
         this.openSnackBar(`Signup successful.`);
-        this.router.navigate(['/'])
+        this.router.navigate(['/home'])
       }))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);

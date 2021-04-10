@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       .pipe(tap((resp) => {
         if (resp != null) {
           this.openSnackBar(`Login successful.`);
-          this.router.navigate(['/'])
+          this.router.navigate(['/home'])
         }
       }))
       .pipe(catchError((error: HttpErrorResponse) => {
