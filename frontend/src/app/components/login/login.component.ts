@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/entities/user.entity';
 import { RestRequestService } from 'src/app/services/rest-request.service';
 import { TokenManagerService } from 'src/app/services/token-manager.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,10 @@ export class LoginComponent implements OnInit {
     private router: Router) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.isLoggedIn())
+      this.router.navigate(['/home'])
+  }
 
   onLoginClick(): void {
     this.loginForm.get('username').disable();
@@ -65,6 +69,12 @@ export class LoginComponent implements OnInit {
 
   signUp(email: string, password: string) {
     return this.rest.post('signup', new User({ email: email, password: password }))
+  }
+
+  isLoggedIn() {
+    const expiration = this.token.getToken().expires_at
+    const expiresAt = JSON.parse(expiration);
+    return moment().isBefore(moment(expiresAt))
   }
 
 }

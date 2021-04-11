@@ -12,10 +12,11 @@ body {
 .custom-snack-bar {
     background-color: rgba(255, 255, 255, 0.5);
     color: rgb(45, 45, 45);
+    backdrop-filter: blur(10px);
 }
 
 .custom-snack-bar button {
-    background-color: rgb(63, 81, 181, 0.9);
+    background-color: rgb(63, 81, 181);
     color: rgb(255, 255, 255);
 }
 

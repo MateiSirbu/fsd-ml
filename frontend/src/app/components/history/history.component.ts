@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { Classification } from 'src/app/entities/classification.entity';
 import { catchError, tap } from 'rxjs/operators';
@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RestRequestService } from 'src/app/services/rest-request.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortable } from '@angular/material/sort';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-history',

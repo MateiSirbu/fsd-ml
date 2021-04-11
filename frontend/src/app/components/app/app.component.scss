@@ -1,10 +1,20 @@
+[hidden] {
+  display: none !important;
+}
+
 .container {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
   background-repeat: no-repeat;
   background: linear-gradient(60deg, #2d5880 0%, #6da3b9 33%, #b1c5a4 66%, #e48947 100%);
   background-attachment: fixed;
-  background-size: cover;
+  background-size: auto;
   overflow-y: overlay;
-  height: 100%;
 }
 
 mat-drawer {

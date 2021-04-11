@@ -9,17 +9,17 @@ import { UploadComponent } from './components/upload/upload.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
-  { path: 'upload', component: UploadComponent, canActivate: [AuthGuard] },
-  { path: 'forgot', component: ForgotComponent },
-  { path: '**', redirectTo: 'login' }
+  { path: 'login', component: LoginComponent, data: { routeIndex: 0 } },
+  { path: 'signup', component: SignupComponent, data: { routeIndex: 1 } },
+  { path: 'forgot', component: ForgotComponent, data: { routeIndex: 2 } },
+  { path: 'home', component: HomeComponent, data: { routeIndex: 3 }, canActivate: [AuthGuard] },
+  { path: 'history', component: HistoryComponent, data: { routeIndex: 4 }, canActivate: [AuthGuard] },
+  { path: 'upload', component: UploadComponent, data: { routeIndex: 5 }, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

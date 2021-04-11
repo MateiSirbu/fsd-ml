@@ -1,29 +1,34 @@
-<mat-drawer-container fullscreen>
-    <mat-drawer #drawer mode="side" opened>
-        <mat-list *ngIf="this.headerService.willShowHeader()">
-            <mat-list-item>
-                <a mat-mini-fab color="primary" matTooltip="Home" matTooltipPosition="right" href='/home' aria-label="Example icon button with a menu icon">
-                    <mat-icon>home</mat-icon>
-                </a>
-            </mat-list-item>
-            <mat-list-item>
-                <a mat-mini-fab color="primary" matTooltip="Log out" matTooltipPosition="right" (click)="logOut()" aria-label="Example icon button with a menu icon">
-                    <mat-icon>logout</mat-icon>
-                </a>
-            </mat-list-item>
-            <mat-list-item>
-                <a mat-mini-fab color="primary" matTooltip="Classification log" matTooltipPosition="right" href='/history' aria-label="Example icon button with a menu icon">
-                    <mat-icon>list</mat-icon>
-                </a>
-            </mat-list-item>
-            <mat-list-item>
-                <a mat-mini-fab color="primary" matTooltip="Upload a picture" matTooltipPosition="right" href='/upload' aria-label="Example icon button with a menu icon">
-                    <mat-icon>upload</mat-icon>
-                </a>
-            </mat-list-item>
-        </mat-list>
-    </mat-drawer>
-    <div class="container">
-        <router-outlet></router-outlet>
-    </div>
-</mat-drawer-container>
+<div class="container">
+    <mat-drawer-container fullscreen>
+        <mat-drawer #drawer mode="side" [opened]="this.headerService.willShowHeader()">
+            <mat-list>
+                <mat-list-item>
+                    <button mat-mini-fab color="primary" matTooltip="Home" matTooltipPosition="right" routerLink="home">
+                        <mat-icon>home</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item>
+                    <button mat-mini-fab color="primary" matTooltip="Classification log" matTooltipPosition="right"
+                        routerLink="history">
+                        <mat-icon>list</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item>
+                    <button mat-mini-fab color="primary" matTooltip="Upload a picture" matTooltipPosition="right"
+                        routerLink="upload">
+                        <mat-icon>upload</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item>
+                    <button mat-mini-fab color="primary" matTooltip="Log out" matTooltipPosition="right"
+                        (click)="logOut()" routerLink="login">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+        </mat-drawer>
+        <div class="content" [@animRoutes]="animationState">
+            <router-outlet (activate)="onActivate($event)"></router-outlet>
+        </div>
+    </mat-drawer-container>
+</div>
