@@ -1,7 +1,10 @@
 #!/bin/bash
 
 gcloud auth login
-gcloud config set project fsdev-ml
+gcloud config set project fsd-ml
 gcloud services list
 gcloud services enable cloudfunctions.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
 gcloud functions deploy helloWorld --entry-point helloWorld --runtime nodejs14 --trigger-http --allow-unauthenticated
+
+# check it out at https://us-central1-fsd-ml.cloudfunctions.net/helloWorld
