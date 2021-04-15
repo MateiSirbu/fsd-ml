@@ -8,6 +8,9 @@ const datastore = new Datastore({
 const kindName = 'Dessert';
 
 export function fetchDesserts(req, res) {
+  res.set('Access-Control-Allow-Origin', "*")
+  res.set('Access-Control-Allow-Methods', 'GET')
+  res.set('Access-Control-Allow-Headers', 'Authorization')
   const query = datastore.createQuery(kindName)
   let desserts: any
   datastore.runQuery(query)

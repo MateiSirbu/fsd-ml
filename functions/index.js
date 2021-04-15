@@ -8,6 +8,9 @@ var datastore = new datastore_1.Datastore({
 });
 var kindName = 'Dessert';
 function fetchDesserts(req, res) {
+    res.set('Access-Control-Allow-Origin', "*");
+    res.set('Access-Control-Allow-Methods', 'GET');
+    res.set('Access-Control-Allow-Headers', 'Authorization');
     var query = datastore.createQuery(kindName);
     var desserts;
     datastore.runQuery(query)

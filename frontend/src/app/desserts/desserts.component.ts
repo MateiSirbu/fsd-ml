@@ -39,17 +39,13 @@ export class DessertsComponent implements OnInit {
   }
 
   fetchHeader() {
-    return ['select', 'dessert', 'calories', 'fat',
+    return ['dessert', 'calories', 'fat',
       'carbs', 'protein', 'sodium', 'calcium', 'iron'
     ];
   }
 
   fetchDesserts(): Observable<Dessert[]> {
-    return this.http.get<Dessert[]>("/api/desserts");
+    return this.http.get<Dessert[]>("https://us-central1-fsd-ml.cloudfunctions.net/fetchDesserts");
   }
-
-  addDesserts(dessert: Dessert) {
-    return this.http.post('/api/signup', dessert);
-  };
 }
 
