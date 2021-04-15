@@ -28,7 +28,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SignupComponent } from './components/signup/signup.component'
+import { SignupComponent } from './components/signup/signup.component';
+import { DessertsComponent } from './desserts/desserts.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SignupComponent } from './components/signup/signup.component'
     HistoryComponent,
     HomeComponent,
     ForgotComponent,
-    SignupComponent
+    SignupComponent,
+    DessertsComponent
   ],
   imports: [
     BrowserModule,
