@@ -53,7 +53,7 @@ mat-card {
 }
 
 .hidden-image-placeholder{
-display: flex;
+    display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
@@ -90,58 +90,59 @@ a {
 
 @media only screen and (max-width: 800px) {
   .mat-display-2 {
-     font-size: 180%; 
+      font-size: 190%; 
   }
 
   .title {
-     margin-bottom: 10px;
+      margin-bottom: 10px;
   }
 
   .content {
-    font-size: 80%;
-  }
-
-  .login-button {
-      transform: scale(0.8);
+      font-size: 95%;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 620px) {
   .content {
-    font-size: 55%;
+      font-size: 85%;
   }
-   .title {
-     margin-bottom: 10px;
+
+  .title {
+      margin-bottom: 8px;
   }
+
   .hidden-img {
-    opacity: 0.75;
-    max-height: 60%;
-    max-width: 60%;
+      opacity: 0.75;
+      max-height: 60%;
+      max-width: 60%;
+      margin-bottom: 15px;
   }
+
   .keychain-img {
-    opacity: 0;
+      opacity: 0;
   }
+
   .visible-image-placeholder{
-  transform: scaleX(0.1);
-  transform-origin: left;
-}
-.hidden-image-placeholder{
-  transform: translate(-80px);
-  transform-origin: left; 
-}
+      transform: scaleX(0.1);
+      transform-origin: left;
+  }
+
+  .hidden-image-placeholder{
+      transform: translate(-80px);
+      transform-origin: left; 
+  }
+
+  .mat-display-2 {
+      line-height: 0.8;
+  }
 }
 
 @media only screen and (max-width: 430px) {
   .content {
-    font-size: 30%;
+      font-size: 70%;
   }
 
-   .title {
-     margin-bottom: 5px;
-  }
-
-    .login-button {
-      transform: scale(0.6);
-      margin-bottom: 0px;
+  .title {
+      margin-bottom: 5px;
   }
 }

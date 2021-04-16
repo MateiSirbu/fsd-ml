@@ -1,11 +1,14 @@
 <div class="content">
     <mat-card class="login-card">
         <mat-grid-list cols="2" rowHeight="100%">
-            <mat-grid-tile colspan="1">
+            <mat-grid-tile class="visible-image-placeholder" colspan="1">
                 <img class="keychain-img" src="../../../assets/login/cat.png">
             </mat-grid-tile>
-            <mat-grid-tile colspan="1">
+            <mat-grid-tile class="hidden-image-placeholder" colspan="1">
                 <form [formGroup]="loginForm" class="login-form">  
+                    <div>
+                        <img class="hidden-img" src="../../../assets/login/cat.png">
+                    </div>
                     <div class="title">
                         <span class="mat-display-2">Can I haz access?</span>
                     </div>
