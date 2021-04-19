@@ -27,7 +27,7 @@ export class DessertsFeedComponent implements OnInit {
   ngOnInit(): void {
     this.dessertsColumns = this.fetchHeader()
     this.fetchDesserts()
-      .pipe(tap((result: Dessert[]) => this.dessertsList = result))
+      .pipe(tap((result: Dessert[]) => this.dessertsList = this.sortDesserts(result)))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);
         return EMPTY;
@@ -59,5 +59,11 @@ export class DessertsFeedComponent implements OnInit {
 
   onViewAsClick() {
     this.router.navigate(['/desserts'])
+  }
+
+  sortDesserts(desserts: Dessert[]) {
+    return desserts.sort(function (a, b) {
+      return (a.dessert).localeCompare(b.dessert);
+    });
   }
 }

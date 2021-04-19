@@ -21,7 +21,6 @@ export class DessertsAddComponent implements OnInit {
   ) { }
 
   public form: FormGroup
-  public buttonsClickable: boolean = false;
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -34,7 +33,6 @@ export class DessertsAddComponent implements OnInit {
       protein: this.fb.control('', Validators.required),
       sodium: this.fb.control('', Validators.required),
     })
-    this.buttonsClickable = true;
   }
 
   onCancelClick(): void {
@@ -42,8 +40,6 @@ export class DessertsAddComponent implements OnInit {
   }
 
   onOkClick(): void {
-    this.form.disable()
-    this.buttonsClickable = false;
     let reqBody: any = {
       calcium: this.form.controls['calcium'].value + '%',
       calories: this.form.controls['calories'].value,
@@ -54,12 +50,13 @@ export class DessertsAddComponent implements OnInit {
       protein: this.form.controls['protein'].value,
       sodium: this.form.controls['sodium'].value
     }
-    this.http.post<any>("http://localhost:8080/", reqBody)
-      .pipe(tap(() => this.openSnackBar("Dessert added successfully.")))
+    this.dialogRef.close();
+    this.http.post<any>("https://us-central1-fsd-ml.cloudfunctions.net/addDessert", reqBody)
+      .pipe(tap(() => {
+        window.location.reload();
+      }))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);
-        this.form.enable()
-        this.buttonsClickable = true;
         return EMPTY;
       }))
       .subscribe()

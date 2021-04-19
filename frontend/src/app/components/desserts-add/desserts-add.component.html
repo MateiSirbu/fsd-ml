@@ -39,8 +39,7 @@
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button (click)="onCancelClick()" [disabled]="!buttonsClickable">CANCEL</button>
-        <button (click)="onOkClick()" [disabled]="!form.valid || !buttonsClickable" mat-raised-button
-            color="primary">OK</button>
+        <button mat-button (click)="onCancelClick()">CANCEL</button>
+        <button (click)="onOkClick()" [disabled]="!form.valid" mat-raised-button color="primary">OK</button>
     </mat-dialog-actions>
 </form>

@@ -25,7 +25,7 @@ export class DessertsComponent implements OnInit {
   ngOnInit(): void {
     this.dessertsColumns = this.fetchHeader()
     this.fetchDesserts()
-      .pipe(tap((result: Dessert[]) => this.dessertsList = result))
+      .pipe(tap((result: Dessert[]) => this.dessertsList = this.sortDesserts(result)))
       .pipe(catchError((error: HttpErrorResponse) => {
         this.openSnackBar(`${error.status}: ${error.statusText}.`);
         return EMPTY;
@@ -48,6 +48,12 @@ export class DessertsComponent implements OnInit {
 
   fetchDesserts(): Observable<Dessert[]> {
     return this.http.get<Dessert[]>("https://us-central1-fsd-ml.cloudfunctions.net/fetchDesserts");
+  }
+
+  sortDesserts(desserts: Dessert[]) {
+    return desserts.sort(function (a, b) {
+      return (a.dessert).localeCompare(b.dessert);
+    });
   }
 
   onViewAsClick() {
