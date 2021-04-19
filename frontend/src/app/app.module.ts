@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,15 +21,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignupComponent } from './components/signup/signup.component';
-import { DessertsComponent } from './desserts/desserts.component';
-import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component'
+import { DessertsComponent } from './components/desserts/desserts.component';
+import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component';
+import { DessertsAddComponent } from './components/desserts-add/desserts-add.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.
     ForgotComponent,
     SignupComponent,
     DessertsComponent,
-    DessertsFeedComponent
+    DessertsFeedComponent,
+    DessertsAddComponent
   ],
   imports: [
     BrowserModule,

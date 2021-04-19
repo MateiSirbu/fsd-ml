@@ -40,7 +40,29 @@
 }
 
 .header-right {
-    vertical-align:top;
+    vertical-align: top;
     width: 49%;
-    text-align: right
+    text-align: right;
+}
+
+.mat-elevation-z8 {
+    border-radius: 5px;
+}
+
+.btn-add {
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+mat-card {
+    margin: 20px 20px 20px 20px;
+    background-color: #FFFFFFAA;
+}
+
+mat-card-header {
+    margin-left: -16px;
+}
+
+mat-card-actions {
+    margin-top: -20px;
 }

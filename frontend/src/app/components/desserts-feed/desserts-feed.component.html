@@ -1,7 +1,11 @@
 <div class="content">
     <table class="header">
         <td class="header-left">
-            <h1>Stuff I ate last night</h1>
+            <h1>Stuff I ate last night
+                <button class="btn-add" mat-mini-fab color="primary">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </h1>
         </td>
         <td class="header-right">
             <span class="header-status">
@@ -10,17 +14,29 @@
             <button (click)="onViewAsClick()" mat-raised-button color="primary">VIEW AS TABLE</button>
         </td>
     </table>
-    <div class="desserts mat-elevation-z8">
-        <div *ngFor="let dessert of dessertsList">
-            {{dessert.dessert}},
-            {{dessert.calories}},
-            {{dessert.fat}},
-            {{dessert.carbs}},
-            {{dessert.protein}},
-            {{dessert.sodium}},
-            {{dessert.calcium}},
-            {{dessert.iron}}
-        </div>
 
+    <div class="desserts mat-elevation-z8">
+        <mat-card *ngFor="let dessert of dessertsList">
+            <mat-card-header>
+                <mat-card-title>{{dessert.dessert}}</mat-card-title>
+                <mat-card-subtitle><b>Nutritional facts per 100g serving</b></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    <b>Calories:</b> {{dessert.calories}} kcal <br>
+                    <b>Fat:</b> {{dessert.fat}} g <br>
+                    <b>Carbs:</b> {{dessert.carbs}} g <br>
+                    <b>Protein:</b> {{dessert.protein}} g <br>
+                    <b>Sodium:</b> {{dessert.sodium}} mg <br>
+                    <b>Calcium:</b> {{dessert.calcium}} <br>
+                    <b>Iron:</b> {{dessert.iron}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                  </button>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>
