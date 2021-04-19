@@ -29,7 +29,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignupComponent } from './components/signup/signup.component';
-import { DessertsComponent } from './desserts/desserts.component'
+import { DessertsComponent } from './desserts/desserts.component';
+import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DessertsComponent } from './desserts/desserts.component'
     HomeComponent,
     ForgotComponent,
     SignupComponent,
-    DessertsComponent
+    DessertsComponent,
+    DessertsFeedComponent
   ],
   imports: [
     BrowserModule,

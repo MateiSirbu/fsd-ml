@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { DessertsComponent } from './desserts/desserts.component';
+import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, data: { routeIndex: 0 } },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { routeIndex: 3 }, canActivate: [AuthGuard] },
   { path: 'history', component: HistoryComponent, data: { routeIndex: 4 }, canActivate: [AuthGuard] },
   { path: 'desserts', component: DessertsComponent, data: { routeIndex: 5 }, canActivate: [AuthGuard] },
+  { path: 'desserts/feed', component: DessertsFeedComponent, canActivate: [AuthGuard] },
   { path: 'upload', component: UploadComponent, data: { routeIndex: 6 }, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' }
 ];

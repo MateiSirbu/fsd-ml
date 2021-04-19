@@ -1,18 +1,17 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
-import { Dessert } from 'src/app/entities/dessert.entity';
-import { catchError, tap } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Dessert } from 'src/app/entities/dessert.entity';
 
 @Component({
-  selector: 'app-desserts',
-  templateUrl: './desserts.component.html',
-  styleUrls: ['./desserts.component.scss']
+  selector: 'app-desserts-feed',
+  templateUrl: './desserts-feed.component.html',
+  styleUrls: ['./desserts-feed.component.scss']
 })
-export class DessertsComponent implements OnInit {
+export class DessertsFeedComponent implements OnInit {
   dessertsList: Dessert[]
   dessertsColumns: string[]
 
@@ -51,7 +50,6 @@ export class DessertsComponent implements OnInit {
   }
 
   onViewAsClick() {
-    this.router.navigate(['/desserts/feed'])
+    this.router.navigate(['/desserts'])
   }
 }
-

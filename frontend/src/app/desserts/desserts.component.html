@@ -1,5 +1,15 @@
 <div class="content">
-    <h1>Stuff I ate last night</h1>
+    <table class="header">
+        <td class="header-left">
+            <h1>Stuff I ate last night</h1>
+        </td>
+        <td class="header-right">
+            <span class="header-status">
+                <mat-icon>edit_off</mat-icon>Read-only
+            </span>
+            <button (click)="onViewAsClick()" mat-raised-button color="primary">VIEW AS FEED</button>
+        </td>
+    </table>
     <div class="desserts mat-elevation-z8">
         <table mat-table [dataSource]="dessertsList" class="mat-elevation-z8 table-striped">
 
