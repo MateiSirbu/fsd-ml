@@ -10,7 +10,7 @@ const kindName = 'Dessert';
 export function addDessert(req, res) {
   res.set('Access-Control-Allow-Origin', "*")
   res.set('Access-Control-Allow-Methods', 'POST')
-  res.set('Access-Control-Allow-Headers', 'Authorization')
+  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   const newDessert = {
     calcium: req.body.calcium,
     calories: req.body.calories,
@@ -21,6 +21,7 @@ export function addDessert(req, res) {
     protein: req.body.protein,
     sodium: req.body.sodium
   }
+  console.log(newDessert)
   const entity = {
     key: datastore.key(kindName),
     data: newDessert

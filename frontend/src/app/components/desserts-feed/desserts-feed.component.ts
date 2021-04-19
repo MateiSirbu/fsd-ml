@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Dessert } from 'src/app/entities/dessert.entity';
+import { MatDialog } from '@angular/material/dialog';
+import { DessertsAddComponent } from '../desserts-add/desserts-add.component';
 
 @Component({
   selector: 'app-desserts-feed',
@@ -18,7 +20,8 @@ export class DessertsFeedComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -30,6 +33,11 @@ export class DessertsFeedComponent implements OnInit {
         return EMPTY;
       }))
       .subscribe()
+  }
+
+  addDessert() {
+    const dialogRef = this.dialog.open(DessertsAddComponent, { width: '400px', maxHeight: '90vh' })
+    dialogRef.afterClosed().subscribe()
   }
 
   openSnackBar(message) {

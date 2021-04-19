@@ -9,8 +9,8 @@ var datastore = new datastore_1.Datastore({
 var kindName = 'Dessert';
 function addDessert(req, res) {
     res.set('Access-Control-Allow-Origin', "*");
-    res.set('Access-Control-Allow-Methods', 'POST');
-    res.set('Access-Control-Allow-Headers', 'Authorization');
+    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
     var newDessert = {
         calcium: req.body.calcium,
         calories: req.body.calories,
@@ -21,17 +21,20 @@ function addDessert(req, res) {
         protein: req.body.protein,
         sodium: req.body.sodium
     };
-    var entity = {
-        key: datastore.key(kindName),
-        data: newDessert
-    };
+    console.log(newDessert);
+    /*const entity = {
+      key: datastore.key(kindName),
+      data: newDessert
+    }
     datastore.insert(entity)
-        .then(function (results) {
+      .then(results => {
         return res.status(200).send(results);
-    })["catch"](function (error) {
+      })
+      .catch(error => {
         console.error('ERROR: ', error);
         return res.status(500).send(error);
-    });
+      });*/
+    return res.status(200).send(newDessert);
 }
 exports.addDessert = addDessert;
 ;

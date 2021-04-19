@@ -23,14 +23,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './services/interceptor.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignupComponent } from './components/signup/signup.component';
 import { DessertsComponent } from './components/desserts/desserts.component';
 import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component';
 import { DessertsAddComponent } from './components/desserts-add/desserts-add.component'
+
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { DessertsAddComponent } from './components/desserts-add/desserts-add.com
     MatTooltipModule,
     MaterialFileInputModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

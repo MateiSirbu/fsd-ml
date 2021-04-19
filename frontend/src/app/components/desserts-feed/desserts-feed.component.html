@@ -2,7 +2,7 @@
     <table class="header">
         <td class="header-left">
             <h1>Stuff I ate last night
-                <button class="btn-add" mat-mini-fab color="primary">
+                <button class="btn-add" (click)="addDessert()" mat-mini-fab color="primary">
                     <mat-icon>add</mat-icon>
                 </button>
             </h1>
@@ -19,7 +19,7 @@
         <mat-card *ngFor="let dessert of dessertsList">
             <mat-card-header>
                 <mat-card-title>{{dessert.dessert}}</mat-card-title>
-                <mat-card-subtitle><b>Nutritional facts per 100g serving</b></mat-card-subtitle>
+                <mat-card-subtitle><b>Nutrition facts per 100g serving</b></mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <p>
