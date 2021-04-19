@@ -1,7 +1,7 @@
 {
-  "name": "functions",
+  "name": "fetch-desserts",
   "version": "1.0.0",
-  "description": "Functions proof-of-concept on GCP.",
+  "description": "Function that fetches desserts from GCP datastore.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
