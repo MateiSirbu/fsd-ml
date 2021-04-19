@@ -13,4 +13,5 @@ fi
 
 FUNCTION_NAME=$1
 
-npx tsc ../$FUNCTION_NAME/index.ts
+cd ../$FUNCTION_NAME
+npx tsc ./index.ts

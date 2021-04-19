@@ -20,7 +20,7 @@ function fetchDesserts(req, res) {
         return res.status(200).send(desserts);
     })["catch"](function (error) {
         console.error('ERROR: ', error);
-        return res.status(200).send(error);
+        return res.status(500).send(error);
     });
 }
 exports.fetchDesserts = fetchDesserts;

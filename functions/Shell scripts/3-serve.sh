@@ -13,4 +13,5 @@ fi
 
 FUNCTION_NAME=$1
 
-npx ../$FUNCTION_NAME/@google-cloud/functions-framework --target=$FUNCTION_NAME
+cd ../$FUNCTION_NAME
+npx @google-cloud/functions-framework --target=$FUNCTION_NAME

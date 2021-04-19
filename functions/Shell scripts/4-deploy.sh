@@ -26,5 +26,5 @@ FUNCTION_NAME=$1
 PROJECT_NAME=$(gcloud config list --format 'value(core.project)')
 
 cd ../$FUNCTION_NAME
-gcloud functions deploy $1 --entry-point $1 --runtime nodejs14 --trigger-http --allow-unauthenticated
-echo "Done, check it out at https://$GCP_REGION-$PROJECT_NAME.cloudfunctions.net/$FUNCTION_NAME!"
+gcloud functions deploy $1 --entry-point $1 --runtime nodejs14 --trigger-http --allow-unauthenticated --region $GCP_REGION
+echo "Done, check it out at https://$GCP_REGION-$PROJECT_NAME.cloudfunctions.net/$FUNCTION_NAME !"
