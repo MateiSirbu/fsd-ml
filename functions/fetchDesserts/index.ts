@@ -15,7 +15,10 @@ export function fetchDesserts(req, res) {
   let desserts: any
   datastore.runQuery(query)
     .then(results => {
-      desserts = results[0];
+      desserts = results[0].map((dessert) => {
+        dessert["id"] = dessert[datastore.KEY].id
+        return dessert
+      })
       console.log(desserts)
       return res.status(200).send(desserts);
     })

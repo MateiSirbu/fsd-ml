@@ -31,7 +31,9 @@ import { Interceptor } from './services/interceptor.service';
 import { SignupComponent } from './components/signup/signup.component';
 import { DessertsComponent } from './components/desserts/desserts.component';
 import { DessertsFeedComponent } from './components/desserts-feed/desserts-feed.component';
-import { DessertsAddComponent } from './components/desserts-add/desserts-add.component'
+import { DessertsAddComponent } from './components/desserts-add/desserts-add.component';
+import { DessertDeleteComponent } from './components/dessert-delete/dessert-delete.component';
+import { DessertEditComponent } from './components/dessert-edit/dessert-edit.component'
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { DessertsAddComponent } from './components/desserts-add/desserts-add.com
     SignupComponent,
     DessertsComponent,
     DessertsFeedComponent,
-    DessertsAddComponent
+    DessertsAddComponent,
+    DessertDeleteComponent,
+    DessertEditComponent
   ],
   imports: [
     BrowserModule,

@@ -33,9 +33,12 @@
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="updateDessert(dessert)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteDessert(dessert)">
                     <mat-icon>delete</mat-icon>
-                  </button>
+                </button>
             </mat-card-actions>
         </mat-card>
     </div>

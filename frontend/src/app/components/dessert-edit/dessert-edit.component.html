@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+    <div mat-dialog-title>
+        <mat-icon aria-hidden="false" style="vertical-align: middle;">edit</mat-icon>
+        Edit nutritional value
+    </div>
+    <mat-dialog-content>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Dessert</mat-label>
+            <input type="text" matInput formControlName="dessert">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Calories</mat-label>
+            <input type="number" matInput formControlName="calories">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Fat (g)</mat-label>
+            <input type="number" matInput formControlName="fat">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Carbs (g)</mat-label>
+            <input type="number" matInput formControlName="carbs">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Protein (g)</mat-label>
+            <input type="number" matInput formControlName="protein">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Sodium (mg)</mat-label>
+            <input type="number" matInput formControlName="sodium">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Calcium (%)</mat-label>
+            <input type="number" matInput formControlName="calcium">
+        </mat-form-field>
+        <mat-form-field [style.width.%]=100 appearance="fill">
+            <mat-label>Iron (%)</mat-label>
+            <input type="number" matInput formControlName="iron">
+            <mat-error>Required field</mat-error>
+        </mat-form-field>
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancelClick()">CANCEL</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>OK</button>
+    </div>
+</form>

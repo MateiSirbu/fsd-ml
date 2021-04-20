@@ -15,7 +15,10 @@ function fetchDesserts(req, res) {
     var desserts;
     datastore.runQuery(query)
         .then(function (results) {
-        desserts = results[0];
+        desserts = results[0].map(function (dessert) {
+            dessert["id"] = dessert[datastore.KEY].id;
+            return dessert;
+        });
         console.log(desserts);
         return res.status(200).send(desserts);
     })["catch"](function (error) {
