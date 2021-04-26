@@ -4,7 +4,7 @@ test_production:
   image: node:14
   stage: test
   only:
-  - production
+  - master
   script:
   - cd ./functions/Shell\ scripts
   - chmod u+x ./2-compile.sh
@@ -12,9 +12,8 @@ test_production:
 
 deploy_production:
   stage: deploy
-  environment: Production
   only:
-  - production
+  - master
   script:
   - cd ./functions/fetchDesserts
   - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
