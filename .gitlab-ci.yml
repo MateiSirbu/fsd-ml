@@ -1,4 +1,4 @@
-image: node:14
+image: google/cloud-sdk:alpine
 
 test_production:
   image: node:14
@@ -14,8 +14,6 @@ deploy_production:
   only:
   - master
   script:
-  - curl https://sdk.cloud.google.com > install.sh; chmod u+x ./install.sh; ./install.sh --disable-prompts
-  - source /root/google-cloud-sdk/completion.bash.inc; source /root/google-cloud-sdk/path.bash.inc
   - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
   - gcloud config set project $PROJECT_ID
   - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
