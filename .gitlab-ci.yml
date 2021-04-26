@@ -6,20 +6,18 @@ test_production:
   only:
   - master
   script:
-  - cd ./functions/fetchDesserts
-  - npm install
-  - cd ../Shell\ scripts
-  - chmod u+x ./2-compile.sh
-  - ./2-compile.sh fetchDesserts
+  - cd ./functions/fetchDesserts; npm install
+  - cd ../Shell\ scripts; chmod u+x ./2-compile.sh; ./2-compile.sh fetchDesserts
 
 deploy_production:
   stage: deploy
   only:
   - master
   script:
-  - cd ./functions/fetchDesserts
+  - curl https://sdk.cloud.google.com > install.sh; chmod u+x ./install.sh; ./install.sh --disable-prompts; exec -l $SHELL
   - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+  - gcloud config set project $PROJECT_ID
   - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
-  - gcloud functions deploy fetchDesserts --entry-point fetchDesserts --runtime nodejs14 --trigger-http --allow-unauthenticated --region us-central1 --quiet --project $PROJECT_ID
+  - cd ./functions/Shell\ scripts; chmod u+x ./4-deploy-silent.sh; ./4-deploy-silent.sh fetchDesserts
   after_script:
   - rm /tmp/$CI_PIPELINE_ID.json
