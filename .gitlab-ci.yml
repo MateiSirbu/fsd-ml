@@ -6,7 +6,9 @@ test_production:
   only:
   - master
   script:
-  - cd ./functions/Shell\ scripts
+  - cd ./functions/fetchDesserts
+  - npm install
+  - cd ../Shell\ scripts
   - chmod u+x ./2-compile.sh
   - ./2-compile.sh fetchDesserts
 
