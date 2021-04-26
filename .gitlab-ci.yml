@@ -14,7 +14,8 @@ deploy_production:
   only:
   - master
   script:
-  - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+  - echo $SERVICE_ACCOUNT_PIPELINE > /tmp/$CI_PIPELINE_ID.json
+  - echo $SERVICE_ACCOUNT_DATASTORE > ./functions/fetchDesserts/credentials.json
   - gcloud config set project $PROJECT_ID
   - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
   - cd ./functions/Shell\ scripts; chmod u+x ./4-deploy-silent.sh; ./4-deploy-silent.sh fetchDesserts
